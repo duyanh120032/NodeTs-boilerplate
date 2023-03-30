@@ -7,6 +7,9 @@ const productService = {
     prisma.product.findMany({}).then((products) => {
       res.json(products)
     })
+  }),
+  createProduct: catchAsync(async (req: Request, res: Response) => {
+    res.json({ message: 'Create product' })
   })
 }
 export default productService
