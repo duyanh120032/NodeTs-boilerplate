@@ -8,6 +8,8 @@ import cookieParser from 'cookie-parser'
 import errorMiddleware from '~/middlewares/error.middleware'
 import cors from 'cors'
 import connectDB from './database'
+import authRoute from '~/routes/auth.route'
+import passport from '~/config/passport'
 
 const app = express()
 connectDB()
@@ -23,6 +25,7 @@ app.use(hpp())
 app.use(compression())
 app.use(helmet())
 app.use(cookieParser())
+app.use(passport.initialize())
 
 // set up routes
 
@@ -31,6 +34,8 @@ app.get('/', (req, res) => {
 })
 
 app.use('/products', productRoute)
+// authRoute
+app.use('/auth', authRoute)
 
 // catch 404 and forward to error handler
 app.use(errorMiddleware)
