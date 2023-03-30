@@ -1,4 +1,5 @@
 import { IsNotEmpty, IsString } from 'class-validator'
+import { PaginationDto } from '~/dtos/pagination.dto'
 
 export class createProductDto {
   @IsString()
