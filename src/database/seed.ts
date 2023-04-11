@@ -1,12 +1,13 @@
 import { faker } from '@faker-js/faker'
-
-;(() => {
-  seedProducts()
+import bcrypt from 'bcryptjs'
+;(async () => {
+  // await seedProducts()
+  await seedUsers()
 })()
 async function seedProducts() {
   for (let i = 0; i < 20000; i++) {
     console.log(`Creating product ${i + 1}...`)
-    await prisma.product.create({
+    await prisma?.product.create({
       data: {
         name: faker.commerce.productName(),
         price: Number(faker.commerce.price(100, 200, 0)),
@@ -26,5 +27,18 @@ async function seedProducts() {
       }
     })
     console.log(`Product ${i + 1} created!`)
+  }
+}
+async function seedUsers() {
+  const hashedPassword = await bcrypt.hash('123456', 10)
+  for (let i = 0; i < 10; i++) {
+    await prisma?.user.create({
+      data: {
+        name: faker.name.fullName(),
+        email: faker.internet.email(),
+        password: hashedPassword
+      }
+    })
+    console.log(`User ${i + 1} created!`)
   }
 }

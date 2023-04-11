@@ -10,6 +10,7 @@ import cors from 'cors'
 import connectDB from './database'
 import authRoute from '~/routes/auth.route'
 import passport from '~/config/passport'
+import morgan from 'morgan'
 
 const app = express()
 connectDB()
@@ -25,7 +26,10 @@ app.use(hpp())
 app.use(compression())
 app.use(helmet())
 app.use(cookieParser())
+app.use(morgan('combined'))
 app.use(passport.initialize())
+
+// catch all routes
 
 // set up routes
 
