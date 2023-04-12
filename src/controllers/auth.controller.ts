@@ -21,5 +21,10 @@ export const authController = {
     const user = req.user as User
     const token = await authService.refresh(user)
     return res.send(token)
+  }),
+  googleLogin: catchAsync(async (req: Request, res: Response) => {
+    const user = req.user as User
+    const data = await authService.login(user, res)
+    return res.send(data)
   })
 }

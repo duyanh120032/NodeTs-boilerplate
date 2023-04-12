@@ -24,5 +24,7 @@ router
   )
   .post('/register', validationMiddleware(authDto), authController.register)
   .post('/refresh', passport.authenticate('jwt', { session: false }), authController.refresh)
+  .get('/google', passport.authenticate('google', { scope: ['profile', 'email'] }))
+  .get('/google/callback', passport.authenticate('google', { session: false }), authController.googleLogin)
 
 export default router

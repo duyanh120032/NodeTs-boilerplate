@@ -10,7 +10,10 @@ const env = cleanEnv(process.env, {
   JwT_ACCESS_TOKEN_KEY: str({ default: 'secret' }),
   JwT_ACCESS_TOKEN_EXPIRES_IN: str({ default: '1d' }),
   JwT_REFRESH_TOKEN_KEY: str({ default: 'secret' }),
-  JwT_REFRESH_TOKEN_EXPIRES_IN: str({ default: '30d' })
+  JwT_REFRESH_TOKEN_EXPIRES_IN: str({ default: '30d' }),
+  GOOGLE_CLIENT_ID: str(),
+  GOOGLE_CLIENT_SECRET: str(),
+  GOOGLE_CALLBACK_URL: str()
 })
 
 export default env
